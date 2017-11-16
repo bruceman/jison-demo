@@ -71,18 +71,33 @@
     recoverable: (boolean: TRUE when the parser has a error recovery rule available for this particular error)
   }
 */
-var html = (function(){
+var htmlParser = (function(){
 var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,4],$V1=[5,7],$V2=[1,7],$V3=[10,11],$V4=[1,11],$V5=[8,10,11];
 var parser = {trace: function trace() { },
 yy: {},
 symbols_: {"error":2,"Document":3,"ElementList":4,"EOF":5,"Element":6,"<":7,"IDENT":8,"AttrList":9,"/":10,">":11,"AttrList_repetition_plus0":12,"Attr":13,"=":14,"STRING":15,"$accept":0,"$end":1},
 terminals_: {2:"error",5:"EOF",7:"<",8:"IDENT",10:"/",11:">",14:"=",15:"STRING"},
-productions_: [0,[3,2],[4,1],[4,2],[6,5],[6,8],[6,9],[9,1],[9,0],[13,3],[12,1],[12,2]],
+productions_: [0,[3,2],[4,1],[4,2],[6,5],[6,8],[6,9],[9,0],[9,1],[13,3],[12,1],[12,2]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
 var $0 = $$.length - 1;
 switch (yystate) {
+case 1:
+this.$ = $$[$0-1];
+break;
+case 4:
+this.$ = new yy.Element($$[$0-3], $$[$0-2]);
+break;
+case 5:
+this.$ = new yy.Element($$[$0-6], $$[$0-5]);
+break;
+case 6:
+this.$ = new yy.Element($$[$0-7], $$[$0-6], $$[$0-4]);
+break;
+case 9:
+this.$ = new yy.Attribute($$[$0-2], $$[$0].substr(1, $$[$0].length-2));
+break;
 case 10:
 this.$ = [$$[$0]];
 break;
@@ -91,7 +106,7 @@ $$[$0-1].push($$[$0]);
 break;
 }
 },
-table: [{3:1,4:2,6:3,7:$V0},{1:[3]},{5:[1,5],6:6,7:$V0},o($V1,[2,2]),{8:$V2},{1:[2,1]},o($V1,[2,3]),o($V3,[2,8],{9:8,12:9,13:10,8:$V4}),{10:[1,12],11:[1,13]},o($V3,[2,7],{13:14,8:$V4}),o($V5,[2,10]),{14:[1,15]},{11:[1,16]},{4:18,6:3,7:[1,17]},o($V5,[2,11]),{15:[1,19]},o($V1,[2,4]),{8:$V2,10:[1,20]},{6:6,7:[1,21]},o($V5,[2,9]),{8:[1,22]},{8:$V2,10:[1,23]},{11:[1,24]},{8:[1,25]},o($V1,[2,5]),{11:[1,26]},o($V1,[2,6])],
+table: [{3:1,4:2,6:3,7:$V0},{1:[3]},{5:[1,5],6:6,7:$V0},o($V1,[2,2]),{8:$V2},{1:[2,1]},o($V1,[2,3]),o($V3,[2,7],{9:8,12:9,13:10,8:$V4}),{10:[1,12],11:[1,13]},o($V3,[2,8],{13:14,8:$V4}),o($V5,[2,10]),{14:[1,15]},{11:[1,16]},{4:18,6:3,7:[1,17]},o($V5,[2,11]),{15:[1,19]},o($V1,[2,4]),{8:$V2,10:[1,20]},{6:6,7:[1,21]},o($V5,[2,9]),{8:[1,22]},{8:$V2,10:[1,23]},{11:[1,24]},{8:[1,25]},o($V1,[2,5]),{11:[1,26]},o($V1,[2,6])],
 defaultActions: {5:[2,1]},
 parseError: function parseError(str, hash) {
     if (hash.recoverable) {
@@ -602,9 +617,9 @@ return new Parser;
 
 
 if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-exports.parser = html;
-exports.Parser = html.Parser;
-exports.parse = function () { return html.parse.apply(html, arguments); };
+exports.parser = htmlParser;
+exports.Parser = htmlParser.Parser;
+exports.parse = function () { return htmlParser.parse.apply(htmlParser, arguments); };
 exports.main = function commonjsMain(args) {
     if (!args[1]) {
         console.log('Usage: '+args[0]+' FILE');

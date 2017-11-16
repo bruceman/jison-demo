@@ -4,8 +4,10 @@
   "description": "A simple jison  demo project",
   "main": "index.js",
   "scripts": {
-    "build": "jison simple/simple.y simple/simple.l -o simple/simple-parser.js",
-    "test": "node simple/simple-test.js"
+    "simple-build": "jison simple/simple.y simple/simple.l -o simple/simple-parser.js",
+    "simple-test": "node simple/simple-test.js",
+    "html-build": "jison html/html.y html/html.l -o html/html-parser.js",
+    "html-test": "node html/html-test.js"
   },
   "repository": {
     "type": "git",

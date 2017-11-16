@@ -1,5 +1,5 @@
-var parser = require('./html').parser;
+var compiler = require('./html-compiler');
 
-var result = parser.parse('<div id="test"></div>');
+var result = compiler.compile('<div id="test" class="red"><span class="green"></span></div>');
 
 console.log(result)
